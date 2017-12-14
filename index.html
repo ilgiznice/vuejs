@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./public/css/index.css">
+</head>
+
+<body>
+  <div id="app">
+    <input v-model="firstName" v-bind:placeholder="firstNamePlaceholder" />
+    <input v-model="lastName" v-bind:placeholder="lastNamePlaceholder" />
+    <p>
+      {{ fullName }}
+    </p>
+    <button v-on:click="alert">
+      Уведомить!
+    </button>
+  </div>
+  <hr />
+  <div id="todos">
+    <ol>
+      <li v-for="item in unfinishedTodos">
+        {{ item.text }}
+        <button v-on:click="finishTodo(item)">
+          Завершить
+        </button>
+      </li>
+    </ol>
+    <ol class="finished-todos">
+      <li v-for="item in finishedTodos">
+        {{ item.text }}
+      </li>
+    </ol>
+    <div class="add">
+      <input type="text" v-model="todo">
+      <button v-on:click="addTodo">
+        Добавить
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div id="weather">
+    <div class="info" v-if="info">
+      <img v-bind:src="info.icon" />
+      <div>
+        Город: {{ info.name }}
+      </div>
+      <div>
+        Температура: {{ info.temp }} °C
+      </div>
+      <div>
+        Ветер: {{ info.wind }}  м/c
+      </div>
+      <div>
+        Давление: {{ info.pressure }} Па
+      </div>
+    </div>
+    <p>Показать погоду для:</p>
+    <div class="cities" v-for="city in cities">
+      <button v-on:click="show(city.id)">
+        {{ city.name }}
+      </button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+  <script src="./public/js/index.js"></script>
+</body>
+
+</html>
